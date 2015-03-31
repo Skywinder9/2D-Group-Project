@@ -18,7 +18,9 @@ public class BossEventController : MonoBehaviour
 	public GameObject bossDeathFX = null;
 	public GameObject bossDropFX = null;
 	public TakeDamageFromPlayerBullet bulletColliderListener = null;
-	
+
+	private PlayerStateController playerState;
+
 	public float moveSpeed = 0.1f;
 	public float eventWaitDelay = 3f; // Amount of time to wait between each event
 	
