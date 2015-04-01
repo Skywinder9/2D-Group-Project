@@ -7,8 +7,11 @@ public class BossCrushTrigger : MonoBehaviour
 
 	void OnTriggerEnter2D( Collider2D collidedObject )
 	{
-		if(bossController.currentEvent != BossEventController.bossEvents.fallingToNode)
-			return;
+		//This comment out was made so that the boss is constantly looking for the player,
+		//or enemy and destroys it.
+
+		//if(bossController.currentEvent != BossEventController.bossEvents.fallingToNode)
+		//	return;
 
 		if(collidedObject.tag == "Player" || collidedObject.tag == "Enemy")
 			collidedObject.SendMessage("hitByCrusher");

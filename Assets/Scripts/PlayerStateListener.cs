@@ -47,8 +47,7 @@ public class PlayerStateListener : MonoBehaviour
 	}
 
 	void Update(){
-		Debug.Log (playerHasLanded);
-        Debug.Log("GodMode Enabled" + God);
+
 	}
 
     public void setGodMode(bool set)

@@ -77,7 +77,13 @@ public class BossEventController : MonoBehaviour
 		transform.position = inActiveNode.transform.position;
 		enemiesLeftToKill = enemiesToStartBattle;
 	}
-    
+/*
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Player") {
+			crushPlayer();
+		}
+	}
+*/
 	void Update()
 	{
 		switch(currentEvent)
@@ -236,10 +242,10 @@ public class BossEventController : MonoBehaviour
 
 	public void playerHitByCrusher()
 	{
-		if(currentEvent == bossEvents.fallingToNode)
-		{
+		//if(currentEvent == bossEvents.fallingToNode)
+		//{
 			if(crushPlayer != null)
 				crushPlayer();
-		}
+		//}
 	}
 }
