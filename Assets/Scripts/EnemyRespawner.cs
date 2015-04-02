@@ -4,7 +4,13 @@ using System.Collections;
 public class EnemyRespawner : MonoBehaviour
 {
 	public GameObject spawnEnemy = null;
+    private int enemyCount;
+    private int maxEnemies = 2;
 	float respawnTime = 0.0f;
+
+    void Start(){
+        enemyCount = 0;
+    }
 	
 	void OnEnable()
 	{
@@ -25,6 +31,11 @@ public class EnemyRespawner : MonoBehaviour
 
 		respawnTime = Time.time + 4.0f;
 	}
+
+    public void AddEnemy(int add)
+    {
+        enemyCount += add;
+    }
 	
 	void Update()
 	{
@@ -33,8 +44,11 @@ public class EnemyRespawner : MonoBehaviour
 			if(respawnTime < Time.time)
 			{
 				respawnTime = 0.0f;
-				GameObject newEnemy = Instantiate(spawnEnemy) as GameObject;
-				newEnemy.transform.position = transform.position;
+                if (enemyCount < maxEnemies)
+                {
+                    GameObject newEnemy = Instantiate(spawnEnemy) as GameObject;
+                    newEnemy.transform.position = transform.position;
+                }
                 audio.Play();
 			}
 		}

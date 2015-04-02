@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\DeathTriggerScript.cs" />
      <Compile Include="Assets\Scripts\DestroyOnCollision.cs" />
      <Compile Include="Assets\Scripts\EnemyControllerScript.cs" />
+     <Compile Include="Assets\Scripts\EnemyCounter.cs" />
      <Compile Include="Assets\Scripts\EnemyGuideWatcher.cs" />
      <Compile Include="Assets\Scripts\EnemyRespawner.cs" />
      <Compile Include="Assets\Scripts\GameStates.cs" />
