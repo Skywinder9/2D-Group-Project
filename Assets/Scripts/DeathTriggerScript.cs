@@ -5,6 +5,9 @@ public class DeathTriggerScript : MonoBehaviour
 {
 	void OnTriggerEnter2D( Collider2D collidedObject )
 	{   
-		collidedObject.SendMessage("hitDeathTrigger", SendMessageOptions.DontRequireReceiver);
+		if (collidedObject.gameObject.tag == "Player") {
+			collidedObject.SendMessage ("hitDeathTrigger", SendMessageOptions.DontRequireReceiver);
+			audio.Play ();
+		}
 	}    
 }
