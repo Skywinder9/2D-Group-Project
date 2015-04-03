@@ -2,13 +2,15 @@
 using System.Collections;
 
 public class EnemyCounter : MonoBehaviour {
-    public GameObject vortex;
+	public GameObject vortex;
     private EnemyRespawner enemyRespawner;
 
     void Start()
     {
         enemyRespawner = vortex.GetComponent<EnemyRespawner>();
     }
+
+
 	void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.tag == "Enemy")
         {
@@ -24,6 +26,7 @@ public class EnemyCounter : MonoBehaviour {
         }
     }
 
+	//your problem here is that it is subtracting from the counter when the platform is destroyed.
     void OnDestroy()
     {
         enemyRespawner.AddEnemy(-1);

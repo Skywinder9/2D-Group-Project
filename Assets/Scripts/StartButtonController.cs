@@ -5,6 +5,8 @@ public class StartButtonController : MonoBehaviour
 {
 	public GameObject upSprite;
 	public GameObject downSprite;
+	public GameObject GameSound;
+	public GameObject StartSound;
 	public float downTime = 0.1f;
 	public GameStates stateManager = null;
     public PlayerStateListener playerState;
@@ -51,6 +53,8 @@ public class StartButtonController : MonoBehaviour
                 {
                     playerState.setGodMode(true);
                 }
+				StartSound.audio.Stop();
+				GameSound.audio.Play();
 				// Start the game!
 				stateManager.startGame();
                 
