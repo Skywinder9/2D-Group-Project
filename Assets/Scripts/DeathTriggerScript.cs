@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DeathTriggerScript : MonoBehaviour
 {
-	void OnTriggerEnter2D( Collider2D collidedObject )
+	void OnTriggerStay2D( Collider2D collidedObject )   //Changed from OnTriggerEnter2D
 	{   
 		if (collidedObject.gameObject.tag == "Player") {
 			collidedObject.SendMessage ("hitDeathTrigger", SendMessageOptions.DontRequireReceiver);

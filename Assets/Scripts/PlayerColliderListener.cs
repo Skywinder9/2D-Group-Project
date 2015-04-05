@@ -16,7 +16,10 @@ public class PlayerColliderListener : MonoBehaviour
 
 			case "DeathTrigger":
 				// Player hit the death trigger - kill 'em!
-				targetStateListener.onStateChange(PlayerStateController.playerStates.kill);
+                if (!targetStateListener.isInvincible())
+                {
+                    targetStateListener.onStateChange(PlayerStateController.playerStates.kill);
+                }
 			break;
 		}
 	}

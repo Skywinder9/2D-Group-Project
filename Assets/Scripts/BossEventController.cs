@@ -17,6 +17,8 @@ public class BossEventController : MonoBehaviour
 	public List<GameObject> dropNodeList = new List<GameObject>();
 	public GameObject bossDeathFX = null;
 	public GameObject bossDropFX = null;
+    public GameObject warningAlarm = null;
+    public GameObject gameMusic = null;
 	public TakeDamageFromPlayerBullet bulletColliderListener = null;
 
 	private PlayerStateController playerState;
@@ -130,6 +132,7 @@ public class BossEventController : MonoBehaviour
                          // Set the event state
                          currentEvent = bossEvents.fallingToNode;
                          timeForNextEvent = 0.0f;
+                         warningAlarm.audio.Play();
                     }
                break;
               
@@ -173,9 +176,14 @@ public class BossEventController : MonoBehaviour
     
      public void beginBossBattle()
      {
+         //Play music
+         gameMusic.audio.Stop();
+         audio.Play();
+
           // Set the first falling node and have the boss fall towards it
           targetNode = dropToStartNode;
           currentEvent = bossEvents.fallingToNode;
+          warningAlarm.audio.Play();
 
           // Reset various control variables used to track the boss battle
           timeForNextEvent = 0.0f;

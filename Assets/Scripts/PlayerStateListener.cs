@@ -8,7 +8,7 @@ public class PlayerStateListener : MonoBehaviour
 	public float playerJumpForceVertical = 500f;
 	public float playerJumpForceHorizontal = 250f;
     public GameObject deathFxParticlePrefab = null;
-	public GameObject playerRespawnPoint = null;
+	public GameObject playerRespawnPoints = null;
 	public GameObject bulletPrefab = null;
     public GameObject resurrectSound;
 
@@ -23,7 +23,9 @@ public class PlayerStateListener : MonoBehaviour
 	private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
     private bool playerHasLanded = true;
     private bool playerDead = false;
+    private bool invincible = false;
     private bool God = false;
+    private int invincibleFrames = 80;
 	
 	void OnEnable()
     {
@@ -61,7 +63,10 @@ public class PlayerStateListener : MonoBehaviour
     
 	public void hitDeathTrigger()
 	{
-        onStateChange(PlayerStateController.playerStates.kill);
+        if (!invincible)
+        {
+            onStateChange(PlayerStateController.playerStates.kill);
+        }
 	}
 	
     // Every cycle of the engine, process the current state.
@@ -138,6 +143,7 @@ public class PlayerStateListener : MonoBehaviour
 
 			case PlayerStateController.playerStates.resurrect:
                 resurrectSound.audio.Play();
+                StartCoroutine(Invincible());
 				onStateChange(PlayerStateController.playerStates.idle);
 			break;
 			
@@ -214,7 +220,9 @@ public class PlayerStateListener : MonoBehaviour
 			break;         
 
 			case PlayerStateController.playerStates.resurrect:
-				transform.position = playerRespawnPoint.transform.position;
+                int childIndex = Random.Range(0,playerRespawnPoints.transform.childCount);
+                Vector3 respawnPoint = playerRespawnPoints.transform.GetChild(childIndex).position;
+				transform.position = respawnPoint;
 				transform.rotation = Quaternion.identity;
 				rigidbody2D.velocity = Vector2.zero;
 			break;
@@ -403,6 +411,29 @@ public class PlayerStateListener : MonoBehaviour
         spriteRenderer.enabled = true;
         rigidbody2D.isKinematic = false;
         playerDead = false;
+    }
+
+    public bool isInvincible()
+    {
+        return invincible;
+    }
+
+    IEnumerator Invincible()
+    {
+        invincible = true;
+        for (int i = 0; i < invincibleFrames; i++)
+        {
+            if (i % 4 == 0 || i % 4 == 1)
+            {
+                spriteRenderer.enabled = false;
+            }
+            else
+            {
+                spriteRenderer.enabled = true;
+            }
+            yield return 0;
+        }
+        invincible = false;
     }
 
     void DeathParticles()
