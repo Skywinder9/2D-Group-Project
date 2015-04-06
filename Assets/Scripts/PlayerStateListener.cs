@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/// <summary>
+/// This class is everything player. Both Josh and I have no idea what half this code does.
+/// We just know that it is calling a whole bunch of states to control the player.
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class PlayerStateListener : MonoBehaviour
 {         
-	public float playerWalkSpeed = 3f;
-	public float playerJumpForceVertical = 500f;
-	public float playerJumpForceHorizontal = 250f;
-    public GameObject deathFxParticlePrefab = null;
-	public GameObject playerRespawnPoints = null;
-	public GameObject bulletPrefab = null;
-    public GameObject resurrectSound;
+	public float playerWalkSpeed = 3f;///< how fast our player can walk
+	public float playerJumpForceVertical = 500f;///< the force our player jumps upwards
+	public float playerJumpForceHorizontal = 250f;///< the force our player jumps to the side
+    public GameObject deathFxParticlePrefab = null;///< our death particle system
+	public GameObject playerRespawnPoints = null;///< the different points on the map our player can respawn to
+	public GameObject bulletPrefab = null;///< our bullet we fire
+    public GameObject resurrectSound;///< our sound that we make when we reurect.
 
-    public GameObject[] lives;
-    private int livesLeft;
+    public GameObject[] lives;///< the array of lives we have
+    private int livesLeft;///< counts how many lives we have left
 
-    public Transform bulletSpawnTransform;
+    public Transform bulletSpawnTransform;///< the position our bullet is instantiated at
 
-	private Animator playerAnimator = null;
-    private SpriteRenderer spriteRenderer;
-	private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;
-	private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
-    private bool playerHasLanded = true;
-    private bool playerDead = false;
-    private bool invincible = false;
-    private bool God = false;
-    private int invincibleFrames = 80;
+	private Animator playerAnimator = null;///< the animator that controls our players animation
+    private SpriteRenderer spriteRenderer;///< our player sprite
+	private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;///< the previous player state
+	private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;///< the current player state
+    private bool playerHasLanded = true;///< checks to see if the player has landed
+    private bool playerDead = false;///< checks to see if the player is dead or not
+    private bool invincible = false;///< our temporary invincibillity when we respawn
+    private bool God = false;///< a bool to determine whether or not god mode is enabled
+    private int invincibleFrames = 80;///< the number of frames we are invincible for after respawning
 	
 	void OnEnable()
     {
