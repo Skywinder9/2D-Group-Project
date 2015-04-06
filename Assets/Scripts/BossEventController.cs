@@ -177,7 +177,7 @@ public class BossEventController : MonoBehaviour
      public void beginBossBattle()
      {
          //Play music
-         gameMusic.audio.Stop();
+         gameMusic.audio.Pause();
          audio.Play();
 
           // Set the first falling node and have the boss fall towards it
@@ -222,6 +222,8 @@ public class BossEventController : MonoBehaviour
 		isDead = true;
          
 		GameObject deathFxParticle = (GameObject)Instantiate(bossDeathFX);
+		audio.Stop ();
+		gameMusic.audio.Play ();
 
 		// Reposition the particle emitter at the same position as dropFXSpawnPoint
 		deathFxParticle.transform.position = dropFXSpawnPoint.transform.position;
