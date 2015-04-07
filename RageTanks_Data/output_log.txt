@@ -1,0 +1,70 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [aticfx32.dll 8.17.10.1280]
+    Renderer: AMD Radeon HD 6450
+    Vendor:   ATI
+    VRAM:     1016 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
+Default GameObject BitMask: UI already registered
+ 
+(Filename:  Line: 169)
+
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.043 seconds
+desktop: 1440x900 60Hz; virtual: 1440x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\jrand\Desktop\2D-Group-Project\RageTanks_Data\Managed\System.Core.dll (this message is harmless)
+--- Enemies left to start boss battle: 9
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 8
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 7
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 6
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 5
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 4
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 3
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+--- Enemies left to start boss battle: 0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.973012 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 732.
+Total: 0.627707 ms (FindLiveObjects: 0.031120 ms CreateObjectMapping: 0.011256 ms MarkObjects: 0.160899 ms  DeleteObjects: 0.003641 ms)
+

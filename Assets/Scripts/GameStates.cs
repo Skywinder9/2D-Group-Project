@@ -1,8 +1,9 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+
+/// <summary>
 /// Game states. Displays the title screen and the HUD screen
 /// </summary>
-using UnityEngine;
-using System.Collections;
 
 public class GameStates : MonoBehaviour 
 {

@@ -1,9 +1,8 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+/// <summary>
 /// Player bullet controller. Attached to player bullet GameObjects. Launches the bullet and destroys it after some time has passed
 /// </summary>
-using UnityEngine;
-using System.Collections;
-
 public class PlayerBulletController : MonoBehaviour
 {
 	/// <summary>

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+///<summary>
+/// Attached to the Start Button GameObject
+/// Starts the game
+///</summary>
 public class StartButtonController : MonoBehaviour
 {
 	public GameObject upSprite;///< a place holder for our button when it is not clicked on.

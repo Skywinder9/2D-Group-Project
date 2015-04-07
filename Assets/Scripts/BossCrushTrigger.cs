@@ -1,9 +1,8 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+/// <summary>
 /// Crushes enemies or the player if they are under the boss. Attached to Boss GameObject
 /// </summary>
-using UnityEngine;
-using System.Collections;
-
 public class BossCrushTrigger : MonoBehaviour
 {
 	/// <summary>

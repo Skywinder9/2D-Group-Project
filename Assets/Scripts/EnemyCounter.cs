@@ -1,8 +1,9 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+
+/// <summary>
 /// Counts the number of enemies currently on a platform. Attached to Platform GameObjects
 /// </summary>
-using UnityEngine;
-using System.Collections;
 
 public class EnemyCounter : MonoBehaviour {
 	/// <summary>

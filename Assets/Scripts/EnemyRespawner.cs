@@ -1,8 +1,9 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+
+/// <summary>
 /// Attached to Vortex GameObjects
 /// </summary>
-using UnityEngine;
-using System.Collections;
 
 public class EnemyRespawner : MonoBehaviour
 {

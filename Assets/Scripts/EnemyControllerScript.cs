@@ -1,8 +1,9 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+
+/// <summary>
 /// Changes the states of the enemies when certain conditions are met
 /// </summary>
-using UnityEngine;
-using System.Collections;
 
 public class EnemyControllerScript : MonoBehaviour
 {

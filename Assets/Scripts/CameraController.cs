@@ -1,9 +1,9 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+
+/// <summary>
 /// Camera controller. Attached to the Main Camera
 /// </summary>
-
-using UnityEngine;
-using System.Collections;
 
 public class CameraController : MonoBehaviour 
 {

@@ -1,10 +1,8 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Collections;
+/// <summary>
 /// Player state controller. Changes the player's current state under certain conditions.
 /// </summary>
-
-using UnityEngine;
-using System.Collections;
-
 public class PlayerStateController : MonoBehaviour 
 {
 	/// <summary>
