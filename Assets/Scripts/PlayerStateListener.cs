@@ -29,17 +29,25 @@ public class PlayerStateListener : MonoBehaviour
     private bool invincible = false;///< our temporary invincibillity when we respawn
     private bool God = false;///< a bool to determine whether or not god mode is enabled
     private int invincibleFrames = 80;///< the number of frames we are invincible for after respawning
-	
+
+	/// <summary>
+	/// activates OnStateChange
+	/// </summary>
 	void OnEnable()
     {
 		PlayerStateController.onStateChange += onStateChange;
     }
-	
+	/// <summary>
+	/// turns off OnStateChange
+	/// </summary>
     void OnDisable()
     {
 		PlayerStateController.onStateChange -= onStateChange;
     }
-	
+
+	/// <summary>
+	/// initiallizes our values to their defualt. gets the length of our lives array and establishes livesLefts
+	/// </summary>
 	void Start()
 	{
         livesLeft = lives.Length - 1;
@@ -51,19 +59,25 @@ public class PlayerStateListener : MonoBehaviour
 		PlayerStateController.stateDelayTimer[ (int)PlayerStateController.playerStates.firingWeapon] = 1.0f;
 	}
 
-	void Update(){
-
-	}
-
+	/// <summary>
+	/// passes in a bool from the startButtonController to check to see if god mode should be enabled or not.
+	/// </summary>
+	/// <param name="set">If set to <c>true</c> set.</param>
     public void setGodMode(bool set)
     {
         God = set;
     }
-    void LateUpdate()
+    /// <summary>
+    /// Lates the update.
+    /// </summary>
+	void LateUpdate()
     {
          onStateCycle();
     }
     
+	/// <summary>
+	/// checks to see if we are invincable and if we are then it doesn't kill the player.
+	/// </summary>
 	public void hitDeathTrigger()
 	{
         if (!invincible)
@@ -72,7 +86,9 @@ public class PlayerStateListener : MonoBehaviour
         }
 	}
 	
-    // Every cycle of the engine, process the current state.
+    ///<summary>
+	/// Every cycle of the engine, process the current state.
+	/// </summary>
     void onStateCycle()
     {
 		// Grab the current localScale of the object so we have 
@@ -155,8 +171,10 @@ public class PlayerStateListener : MonoBehaviour
 		}
 	}
     
-    // onStateChange is called whenever we make a change to the player's state 
-	// from anywhere within the game's code.
+    ///<summary> 
+	/// onStateChange is called whenever we make a change to the player's state from anywhere within the game's code.
+	/// </summary>
+	/// <param name="newState">New state.</param>
 	public void onStateChange(PlayerStateController.playerStates newState)
 	{
 		// If the current state and the new state are the same, abort - no need 
@@ -261,10 +279,11 @@ public class PlayerStateListener : MonoBehaviour
 		// And finally, assign the new state to the player object
 		currentState = newState;
 	}    
-    
-	// Compare the desired new state against the current, and see if we are 
-	// allowed to change to the new state. This is a powerful system that ensures 
-	// we only allow the actions to occur that we want to occur.
+    /// <summary>
+	/// Compare the desired new state against the current, and see if we are 
+	/// allowed to change to the new state. This is a powerful system that ensures 
+	/// we only allow the actions to occur that we want to occur.
+	/// </summary>
 	bool checkForValidStatePair(PlayerStateController.playerStates newState)
 	{
 		bool returnVal = false;
@@ -346,9 +365,10 @@ public class PlayerStateListener : MonoBehaviour
 		}          
 		return returnVal;
 	}
-	
-	// checkIfAbortOnStateCondition allows us to do additional state verification, to see
-	// if there is any reason this state should not be allowed to begin.
+	/// <summary>
+	/// checkIfAbortOnStateCondition allows us to do additional state verification, to see
+	/// if there is any reason this state should not be allowed to begin.
+	/// </summary>
 	bool checkIfAbortOnStateCondition(PlayerStateController.playerStates newState)
 	{
 		bool returnVal = false;
@@ -393,12 +413,18 @@ public class PlayerStateListener : MonoBehaviour
 		// Value of true means 'Abort'. Value of false means 'Continue'.
 		return returnVal;
 	}
-
+	/// <summary>
+	/// If hit by the crusher is called we destroy the player.
+	/// </summary>
 	public void hitByCrusher()
 	{
 		onStateChange(PlayerStateController.playerStates.kill);
 	}
 
+	/// <summary>
+	/// pauses our respawn while we play our death FX
+	/// </summary>
+	/// <returns>The pause.</returns>
     IEnumerator KillPause()
     {
         if (!God)
