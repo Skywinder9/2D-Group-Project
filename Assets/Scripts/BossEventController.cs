@@ -14,22 +14,25 @@ public class BossEventController : MonoBehaviour
 		public static event bossAttack crushPlayer;
 	
 	public GameObject inActiveNode = null;///< the node the boss goes to 
-	public GameObject dropToStartNode = null;
-	public GameObject dropFXSpawnPoint = null;
-	public List<GameObject> dropNodeList = new List<GameObject>();
-	public GameObject bossDeathFX = null;
-	public GameObject bossDropFX = null;
-    public GameObject warningAlarm = null;
-    public GameObject gameMusic = null;
-	public TakeDamageFromPlayerBullet bulletColliderListener = null;
+	public GameObject dropToStartNode = null;///< a starting node
+	public GameObject dropFXSpawnPoint = null;///< the point where our drop effects spawn
+	public List<GameObject> dropNodeList = new List<GameObject>();///< the list of points where our boss can possibly drop
+	public GameObject bossDeathFX = null;///< our death particle system
+	public GameObject bossDropFX = null;///< our drop particle system
+    public GameObject warningAlarm = null;///< our warning alarm
+    public GameObject gameMusic = null;///< our game music 
+	public TakeDamageFromPlayerBullet bulletColliderListener = null;///< a refrence to our bullet collider script
 
-	private PlayerStateController playerState;
+	private PlayerStateController playerState;///< a refrence to our player state script
 
-	public float moveSpeed = 0.1f;
-	public float eventWaitDelay = 3f; // Amount of time to wait between each event
+	public float moveSpeed = 0.1f;///< how fast the boss moves
+	public float eventWaitDelay = 3f; ///< Amount of time to wait between each event
 	
-	public int enemiesToStartBattle = 10;
+	public int enemiesToStartBattle = 10;///< number of enemies we need to kill to bring out the boss.
 	
+    ///<summary>
+    /// our boss states
+    /// </summary>
 	public enum bossEvents
 	{
 		inactive = 0,
@@ -38,32 +41,34 @@ public class BossEventController : MonoBehaviour
 		waitingToFall,
 		jumpingOffPlatform
 	}
+
+
+    public bossEvents currentEvent = bossEvents.inactive;///< Current event to cycle on each Update() pass
+
+
+    private GameObject targetNode = null;///< The node object that the boss will be falling towards.
+
+
+    private float timeForNextEvent = 0.0f;///< Amount of time to wait until jumping or falling again.
+
+
+    private Vector3 targetPosition = Vector3.zero;///< Target position used for when jumping off a platform.
+
+
+    public int health = 20;///< Current health of the boss 
+
+
+    private int startHealth = 20;///< Health to start the boss at whenever the battle begins
+
+
+    private bool isDead = false;///< Used to determine if the boss has been defeated
+
+
+    private int enemiesLeftToKill = 0;///< How many enemies left to kill before the boss is spawned
 	
-	// Current event to cycle on each Update() pass
-	public bossEvents currentEvent = bossEvents.inactive;
-	
-	// The node object that the boss will be falling towards.
-	private GameObject targetNode = null; 
-	
-	// Amount of time to wait until jumping or falling again.
-	private float timeForNextEvent = 0.0f; 
-	
-	// Target position used for when jumping off a platform.
-	private Vector3 targetPosition = Vector3.zero; 
-	
-	// Current health of the boss 
-	public int health = 20;
-	
-	// Health to start the boss at whenever the battle begins
-	private int startHealth = 20;
-	
-	// Used to determine if the boss has been defeated
-	private bool isDead = false;
-	
-	// How many enemies left to kill before the boss is spawned
-	private int enemiesLeftToKill = 0;
-	
-	// Use this for initialization
+	///<summary>
+    /// Use this for initialization
+    /// </summary> 
 	void OnEnable()
 	{
         bulletColliderListener.hitByBullet += hitByPlayerBullet;  
@@ -81,13 +86,9 @@ public class BossEventController : MonoBehaviour
 		transform.position = inActiveNode.transform.position;
 		enemiesLeftToKill = enemiesToStartBattle;
 	}
-/*
-	void OnCollisionEnter2D(Collision2D col){
-		if (col.gameObject.tag == "Player") {
-			crushPlayer();
-		}
-	}
-*/
+    /// <summary>
+    /// switches events
+    /// </summary>
 	void Update()
 	{
 		switch(currentEvent)
@@ -175,7 +176,9 @@ public class BossEventController : MonoBehaviour
                break;
           }
      }
-    
+     /// <summary>
+     /// this method starts the boss battle after we've killed enough enemies
+     /// </summary>
      public void beginBossBattle()
      {
          //Play music
@@ -192,7 +195,11 @@ public class BossEventController : MonoBehaviour
           health = startHealth;
           isDead = false;
      }
-    
+    /// <summary>
+    /// just getting the position from where we drop to
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
      Vector3 getSkyPositionOfNode(GameObject node)
      {
           Vector3 targetPosition = targetNode.transform.position;
@@ -200,7 +207,9 @@ public class BossEventController : MonoBehaviour
          
           return targetPosition;
      }
-    
+     /// <summary>
+     /// this takes the damage from the bullet every time it is hit.
+     /// </summary>
      void hitByPlayerBullet()
      {
           health -= 1;         
@@ -209,13 +218,17 @@ public class BossEventController : MonoBehaviour
           if(health <= 0)
                killBoss();
      }
-    
+     /// <summary>
+     /// just generates the drop effects
+     /// </summary>
      void createDropFX()
      {
           GameObject dropFxParticle = (GameObject)Instantiate(bossDropFX);
           dropFxParticle.transform.position = dropFXSpawnPoint.transform.position;
      }
-    
+     /// <summary>
+     /// controls the death particles as well as stopping the boss battle song and resuming the regular music
+     /// </summary>
      void killBoss()
      {
 		if(isDead)
@@ -240,7 +253,10 @@ public class BossEventController : MonoBehaviour
 		timeForNextEvent = 0.0f;
 		enemiesLeftToKill = enemiesToStartBattle;
      }
-
+    /// <summary>
+    /// checks to see if we've killed enough enemies to bring out the boss
+    /// </summary>
+    /// <param name="enemyScore"></param>
 	void enemyDied(int enemyScore)
 	{
 		if(currentEvent == bossEvents.inactive)
@@ -248,10 +264,13 @@ public class BossEventController : MonoBehaviour
 			enemiesLeftToKill -= 1;
 			Debug.Log("--- Enemies left to start boss battle: " + enemiesLeftToKill);
 			if(enemiesLeftToKill <= 0)
-				beginBossBattle();
+				// internal dialogue: "OH MY GOD THEY KILLED KENNY!"
+                beginBossBattle();
 		}
 	}
-
+    /// <summary>
+    /// tells the player to die.
+    /// </summary>
 	public void playerHitByCrusher()
 	{
 		//if(currentEvent == bossEvents.fallingToNode)
