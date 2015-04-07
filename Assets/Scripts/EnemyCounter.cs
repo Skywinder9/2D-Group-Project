@@ -1,8 +1,17 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Counts the number of enemies currently on a platform. Attached to Platform GameObjects
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
 public class EnemyCounter : MonoBehaviour {
+	/// <summary>
+	/// Vortex above the given platform
+	/// </summary>
 	public GameObject vortex;
+	/// <summary>
+	/// Reference to Vortex's EnemyRespawner script
+	/// </summary>
     private EnemyRespawner enemyRespawner;
 
     void Start()
@@ -24,11 +33,5 @@ public class EnemyCounter : MonoBehaviour {
         {
             enemyRespawner.AddEnemy(-1);
         }
-    }
-
-	//your problem here is that it is subtracting from the counter when the platform is destroyed.
-    void OnDestroy()
-    {
-        enemyRespawner.AddEnemy(-1);
     }
 }

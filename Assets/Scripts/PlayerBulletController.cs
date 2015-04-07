@@ -1,12 +1,21 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Player bullet controller. Attached to player bullet GameObjects. Launches the bullet and destroys it after some time has passed
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
 public class PlayerBulletController : MonoBehaviour
 {
+	/// <summary>
+	/// The player object.
+	/// </summary>
      public GameObject playerObject = null; // Will be populated automatically when the bullet is created in PlayerStateListener
      public float bulletSpeed = 15.0f;
-	
-	 private float selfDestructTimer = 0.0f;
+
+	/// <summary>
+	/// Determines when the bullet should be destroyed
+	/// </summary>
+	private float selfDestructTimer = 0.0f;
     
 	void Update()
 	{
@@ -16,7 +25,10 @@ public class PlayerBulletController : MonoBehaviour
 				Destroy(gameObject);
 		}
 	}
-	
+
+	/// <summary>
+	/// Launchs the bullet by adding a horizontal force in the forward direction
+	/// </summary>
      public void launchBullet()
      {
           // The local scale of the player object tells us which direction

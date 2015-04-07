@@ -1,9 +1,19 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Camera controller. Attached to the Main Camera
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour 
 {
+	/// <summary>
+	/// Reference to the player's current state, which should be initially idle
+	/// </summary>
 	public PlayerStateController.playerStates currentPlayerState = PlayerStateController.playerStates.idle;
+	/// <summary>
+	/// Reference to the player object
+	/// </summary>
 	public GameObject playerObject = null;
 	public float cameraTrackingSpeed = 0.2f;
 	private Vector3 lastTargetPosition = Vector3.zero;
@@ -49,7 +59,9 @@ public class CameraController : MonoBehaviour
 		transform.position = Vector3.Lerp(lastTargetPosition, currTargetPosition, currLerpDistance);
 	}
 	
-	// Every cycle of the engine, process the current state
+	/// <summary>
+	/// Every cycle of the engine, process the current state
+	/// </summary>
 	void onStateCycle()
 	{
 		// We use the player state to determine the current action that the camera should take.
@@ -78,7 +90,9 @@ public class CameraController : MonoBehaviour
 			break;
 		}
 	}
-	
+	/// <summary>
+	/// Have the camera follow the player
+	/// </summary>
 	void trackPlayer()
 	{
 		// Get and store the current camera position, and the current player position, in world coordinates.
@@ -106,7 +120,10 @@ public class CameraController : MonoBehaviour
 		// Change the Z position of the target to the same as the current. We don' want that to change.
 		currTargetPosition.z = currCamPos.z;
 	}
-	
+
+	/// <summary>
+	/// Stop tracking the player
+	/// </summary>
 	void stopTrackingPlayer()
 	{
 		// Set the target positioning to the camera's current position to stop its movement in its tracks

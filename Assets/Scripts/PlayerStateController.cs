@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Player state controller. Changes the player's current state under certain conditions.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class PlayerStateController : MonoBehaviour 
 {
+	/// <summary>
+	/// All player states
+	/// </summary>
 	public enum playerStates
 	{
 		idle = 0,
@@ -17,10 +24,19 @@ public class PlayerStateController : MonoBehaviour
 		_stateCount
 	}
 		
-	public static float[] stateDelayTimer = new float[(int)playerStates._stateCount];
-	
-	public delegate void playerStateHandler(PlayerStateController.playerStates newState);
-	public static event playerStateHandler onStateChange;
+	/// <summary>
+	/// Delay for changing between states, such as landing from jumping and jumping
+	/// </summary>
+	public static float[] stateDelayTimer = new float[(int)playerStates._stateCount];		//Delay for changing between states, such as landing from jumping and jumping
+
+	/// <summary>
+	/// Delegate handler for changing player state
+	/// </summary>
+	public delegate void playerStateHandler(PlayerStateController.playerStates newState);	//Delegate handler for changing player state
+	/// <summary>
+	/// Function for changing player state
+	/// </summary>
+	public static event playerStateHandler onStateChange;									//Function for changing player state
 	
 	void LateUpdate () 
 	{

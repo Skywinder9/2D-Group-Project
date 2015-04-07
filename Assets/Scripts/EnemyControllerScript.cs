@@ -1,12 +1,22 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Changes the states of the enemies when certain conditions are met
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
 public class EnemyControllerScript : MonoBehaviour
 {
-	// States to allow objects to know when an enemy dies
+	/// <summary>
+	///  States to allow objects to know when an enemy dies
+	/// </summary>
 	public delegate void enemyEventHandler(int scoreMod);
+	/// <summary>
+	/// Occurs when the enemy has died
+	/// </summary>
 		public static event enemyEventHandler enemyDied;
-
+	/// <summary>
+	/// Reference to this object's TakeDamageFromPlayerBullet script
+	/// </summary>
 	public TakeDamageFromPlayerBullet bulletColliderListener = null;
 	public float walkingSpeed = 0.45f;
 	public GameObject deathFxParticlePrefab = null;
@@ -15,13 +25,17 @@ public class EnemyControllerScript : MonoBehaviour
 
 	void OnEnable()
 	{
-		// Subscribe to events from the bullet collider 
+		/// <summary>
+		/// Subscribe to events from the bullet collider 
+		/// </summary>
 		bulletColliderListener.hitByBullet += hitByPlayerBullet; 
 	}
 	
 	void OnDisable()
 	{
-		// Unsubscribe from events
+		/// <summary>
+		/// Unsubscribe from events
+		/// </summary>
 		bulletColliderListener.hitByBullet -= hitByPlayerBullet;
 	}
 
@@ -56,7 +70,11 @@ public class EnemyControllerScript : MonoBehaviour
 			transform.Translate(new Vector3((walkingSpeed * -1.0f) * Time.deltaTime, 0.0f, 0.0f));
 		}
 	}
-	
+
+	/// <summary>
+	/// Have the enemy move in the opposite direction
+	/// Occurs when an enemy comes to the edge of a platform or touches another enemy
+	/// </summary>
 	public void switchDirections()
 	{
 		// Swap the direction to be the opposite of whatever it 
@@ -67,7 +85,10 @@ public class EnemyControllerScript : MonoBehaviour
 		// new walking direction
 		updateVisualWalkOrientation();
 	}
-	
+
+	/// <summary>
+	/// Reverse the x-scale of the transform so the enemy appears to be moving in its current direction
+	/// </summary>
 	void updateVisualWalkOrientation()
 	{
 		Vector3 localScale = transform.localScale;
@@ -89,6 +110,10 @@ public class EnemyControllerScript : MonoBehaviour
 		} 
 	}
 
+	/// <summary>
+	/// Called when the enemy is hit by the player's bullet
+	/// Calls the enemyDied event which adds 25 to the score
+	/// </summary>
 	public void hitByPlayerBullet()
 	{
 		// Call the EnemyDied event and give it a score of 25.
@@ -98,6 +123,9 @@ public class EnemyControllerScript : MonoBehaviour
 		handleEnemyDeath();
 	}
 
+	/// <summary>
+	/// Called when the enemy is crushed by the boss
+	/// </summary>
 	public void hitByCrusher()
 	{
 		// Enemy was crushed, but don't give any points to the player.
@@ -107,6 +135,10 @@ public class EnemyControllerScript : MonoBehaviour
 		handleEnemyDeath();
 	}
 
+	/// <summary>
+	/// Called when the enemy is destroyed
+	/// Instantiates a particle system, sets its position to the enemy's position, then destroys the enemy after 0.1 seconds
+	/// </summary>
 	void handleEnemyDeath()
 	{
 		// Create the particle emitter object.
