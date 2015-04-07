@@ -442,11 +442,19 @@ public class PlayerStateListener : MonoBehaviour
         playerDead = false;
     }
 
+    /// <summary>
+    /// checks to see if we are invincable or not and returns the bool
+    /// </summary>
+    /// <returns></returns>
     public bool isInvincible()
     {
         return invincible;
     }
 
+    /// <summary>
+    /// Makes our player flicker while he is invincible. Then once the frames are over, the invincibility ends.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Invincible()
     {
         invincible = true;
@@ -465,6 +473,9 @@ public class PlayerStateListener : MonoBehaviour
         invincible = false;
     }
 
+    /// <summary>
+    /// generates the deathParticleSystem where we die
+    /// </summary>
     void DeathParticles()
     {
         // Create the particle emitter object.

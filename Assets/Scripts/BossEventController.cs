@@ -2,16 +2,18 @@
 using System.Collections;
 using System.Collections.Generic; // This is needed to support list objects
 
-
+/// <summary>
+/// the controller for the boss states
+/// </summary>
 public class BossEventController : MonoBehaviour
 {
-	public delegate void bossEventHandler(int scoreMod);
+	public delegate void bossEventHandler(int scoreMod);///< an event that gives points for killing the boss.
 		public static event bossEventHandler bossDied;
 
-	public delegate void bossAttack();
+	public delegate void bossAttack();///< an event for the boss dropping to the node
 		public static event bossAttack crushPlayer;
 	
-	public GameObject inActiveNode = null;
+	public GameObject inActiveNode = null;///< the node the boss goes to 
 	public GameObject dropToStartNode = null;
 	public GameObject dropFXSpawnPoint = null;
 	public List<GameObject> dropNodeList = new List<GameObject>();
